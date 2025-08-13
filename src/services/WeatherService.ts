@@ -58,6 +58,7 @@ export async function fetchLocation(city: string, countryCode = 'US'): Promise<G
     const response = await axios.get(url);
     if (response.data && response.data.results && response.data.results.length > 0) {
       return response.data.results[0] as GeocodingResult;
+      console.log(`results:` + response.data.results[0]); // Debugging line to check the response
     }
     return null;
   } catch (error) {
