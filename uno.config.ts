@@ -4,9 +4,9 @@ import { defineConfig } from 'unocss'
 export default defineConfig({
   theme: {
     colors: {
-      primary: '#1a3549',
-      secondary: '#245478',
-      accent:  'var(--color-success)',
+      primary: '#0b131f',
+      secondary: '#202b3c',
+      accent:  '#0c96f4',
       primaryDark: 'var(--color-primary-dark)',
       background: 'var(--color-background)',
       surface: 'var(--color-surface)',

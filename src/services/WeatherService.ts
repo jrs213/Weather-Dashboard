@@ -11,6 +11,21 @@ export interface WeatherForecast {
     showers: number;
     snowfall: number;
     relative_humidity_2m: number;
+    weather_code: number;
+    apparent_temperature: number;
+  };
+  current_units: {
+    temperature_2m: string;
+    is_day: string;
+    wind_speed_10m: string;
+    wind_direction_10m: string;
+    precipitation: string;
+    rain: string;
+    showers: string;
+    snowfall: string;
+    relative_humidity_2m: string;
+    weather_code: string;
+    apparent_temperature: string;
   };
   daily: {
     temperature_2m_max: number[];
@@ -18,6 +33,25 @@ export interface WeatherForecast {
     sunrise: string[];
     sunset: string[];
     precipitation_probability_max: number[];
+    time: string[];
+  };
+  daily_units: {
+    temperature_2m_max: string;
+    temperature_2m_min: string;
+    sunrise: string;
+    sunset: string;
+    precipitation_probability_max: string;
+    time: string;
+  };
+  hourly?: {
+    temperature_2m: number[];
+    weather_code: string;
+    // Add more hourly fields as needed
+  };
+  hourly_units?: {
+    temperature_2m: string;
+    weather_code: string;
+    // Add more hourly unit fields as needed
   };
 }
 
@@ -29,11 +63,11 @@ export async function fetchWeatherForecast(
   const url =
     `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
     `&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max` +
-    `&current=temperature_2m,is_day,wind_speed_10m,wind_direction_10m,precipitation,rain,showers,snowfall,relative_humidity_2m` +
+    `&hourly=temperature_2m` +
+    `&current=temperature_2m,is_day,wind_speed_10m,wind_direction_10m,precipitation,rain,showers,snowfall,relative_humidity_2m,weather_code,apparent_temperature` +
     `&temperature_unit=fahrenheit` +
     `&wind_speed_unit=mph` +
-    `&precipitation_unit=inch` +
-    `&timezone=America/Phoenix`;
+    `&precipitation_unit=inch`;
   try {
     const response = await axios.get(url);
     return response.data as WeatherForecast;
