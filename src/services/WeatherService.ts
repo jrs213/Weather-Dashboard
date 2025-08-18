@@ -34,6 +34,7 @@ export interface WeatherForecast {
     sunset: string[];
     precipitation_probability_max: number[];
     time: string[];
+    weather_code: string;
   };
   daily_units: {
     temperature_2m_max: string;
@@ -42,6 +43,7 @@ export interface WeatherForecast {
     sunset: string;
     precipitation_probability_max: string;
     time: string;
+    weather_code: string;
   };
   hourly?: {
     temperature_2m: number[];
@@ -62,12 +64,13 @@ export async function fetchWeatherForecast(
 ): Promise<WeatherForecast> {
   const url =
     `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
-    `&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max` +
-    `&hourly=temperature_2m` +
+    `&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max` +
+    `&hourly=weather_code,temperature_2m` +
     `&current=temperature_2m,is_day,wind_speed_10m,wind_direction_10m,precipitation,rain,showers,snowfall,relative_humidity_2m,weather_code,apparent_temperature` +
     `&temperature_unit=fahrenheit` +
     `&wind_speed_unit=mph` +
-    `&precipitation_unit=inch`;
+    `&precipitation_unit=inch` +
+    `&timezone=America/Phoenix`; // Adjust timezone as needed
   try {
     const response = await axios.get(url);
     return response.data as WeatherForecast;
