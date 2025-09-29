@@ -16,7 +16,7 @@ export interface WeatherForecast {
   };
   current_units: {
     temperature_2m: string;
-    is_day: string;
+    is_day: string; 
     wind_speed_10m: string;
     wind_direction_10m: string;
     precipitation: string;
@@ -70,7 +70,7 @@ export async function fetchWeatherForecast(
     `&temperature_unit=fahrenheit` +
     `&wind_speed_unit=mph` +
     `&precipitation_unit=inch` +
-    `&timezone=America/Phoenix`; // Adjust timezone as needed
+    `&timezone=America/Phoenix`; 
   try {
     const response = await axios.get(url);
     return response.data as WeatherForecast;

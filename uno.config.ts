@@ -6,7 +6,7 @@ export default defineConfig({
     colors: {
       primary: '#0b131f',
       secondary: '#202b3c',
-      accent:  '#0c96f4',
+      accent:  '#12a0ffff',
       primaryDark: 'var(--color-primary-dark)',
       background: 'var(--color-background)',
       surface: 'var(--color-surface)',
